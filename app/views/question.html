@@ -1,0 +1,26 @@
+<div class="question">
+	<h3>{{question.questionText}}</h3>
+	<ul>
+		<li ng-repeat="answer in question.answers">
+			<input type="radio" name="question + {{parent.$index}}" ng-model="question.selectedAnswer" value="{{answer.id}}">
+			{{answer.value}}
+		</li>
+	</ul>
+</div>
+<div>{{question}}</div>
+<div>questionId: {{questionId}}</div>
+<div>questionId: {{questionId + 1}}</div>
+<a href="#/question/{{questionId - 1}}" class="prev btn btn-primary" ng-click="save()">Previous</a>
+<a href="#/question/{{questionId + 1}}" class="next btn btn-primary" ng-click="save()">Next</a>
+<hr>
+<!-- <ul ng-repeat="question in questions">
+	<li>
+		<h3 class="question">{{question.questionText}}</h3>
+		<ul>
+			<li ng-repeat="answer in question.answers">
+				<input type="radio" name="question + {{parent.$index}}">
+				{{answer.value}}
+			</li>
+		</ul>
+	</li>
+</ul> -->
