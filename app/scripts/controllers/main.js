@@ -34,7 +34,10 @@ angular.module('ttnApp')
 		};
 
 		$scope.isLast = function() {
-			return $scope.questionId + 1 === $scope.questions.length;
+			if ($scope.questions) {
+				return $scope.questionId + 1 === $scope.questions.length;
+			}
+			return false;
 		};
 
 		$scope.total = $scope.total || 0;
