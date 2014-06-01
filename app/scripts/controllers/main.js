@@ -33,6 +33,29 @@ angular.module('ttnApp')
 			// })
 		};
 
+		$scope.isLast = function() {
+			return $scope.questionId + 1 <= $scope.questions.length;
+		};
+
+		$scope.total = $scope.total || 0;
+
+		var countTotalCorrect = function() {
+			$scope.total = 0;
+			for (var i = 0; i < $scope.questions.length - 1; i++) {
+				var question = $scope.questions[i];
+				for (var j = 0; j < question.answers.length; j++) {
+					var answer = question.answers[j];
+					if (answer.isCorrect && answer.id === parseInt(question.selectedAnswer))  {
+						$scope.total+=1;
+						continue;
+					}
+				};
+			};
+		};
+
+		$scope.$watch("question.selectedAnswer", function(){
+			countTotalCorrect();
+		});
 
 		$scope.questionId = parseInt($routeParams.questionId);
 
@@ -40,10 +63,4 @@ angular.module('ttnApp')
 			$scope.questions = questions;
 			$scope.question = $scope.questions[$routeParams.questionId - 1];
 		});
-
-		$scope.awesomeThings = [
-			'HTML5 Boilerplate',
-			'AngularJS',
-			'Karma'
-		];
 	}]);
