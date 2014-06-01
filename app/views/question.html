@@ -7,16 +7,16 @@
 		</li>
 	</ul>
 </div>
-<div>{{question}}</div>
+<!-- <div>{{question}}</div>
 <hr>
-<div>{{questions}}</div>
+<div>{{questions}}</div> -->
 <!-- <div>questionId: {{questionId}}</div>
 <div>questionId+1: {{questionId + 1}}</div>
 <div>questions: {{questions.length}}</div>
 <div>questionId+1 : {{questionId +1}}</div>
 <div>questionId + 1 smaller than questions.length {{questionId + 1 < questions.length}}</div> -->
 <a href="#/question/{{questionId - 1}}" class="prev btn btn-primary" ng-click="save()" ng-show="{{questionId - 1 !== 0}}">Previous</a>
-<a href="#/question/{{questionId + 1}}" class="next btn btn-primary" ng-click="save()" ng-show="isLast()">Next</a>
+<a href="#/question/{{questionId + 1}}" class="next btn btn-primary" ng-click="save()" ng-show="!isLast()">Next</a>
 <hr>
 
 <div class="total" ng-show="isLast()">

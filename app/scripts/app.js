@@ -22,6 +22,10 @@ angular
 				templateUrl: 'views/question.html',
 				controller: 'MainCtrl'
 			})
+			.when('/cm', {
+				templateUrl: 'views/cm.html',
+				controller: 'CmCtrl'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});

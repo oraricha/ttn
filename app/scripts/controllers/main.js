@@ -34,7 +34,7 @@ angular.module('ttnApp')
 		};
 
 		$scope.isLast = function() {
-			return $scope.questionId + 1 <= $scope.questions.length;
+			return $scope.questionId + 1 === $scope.questions.length;
 		};
 
 		$scope.total = $scope.total || 0;
@@ -54,7 +54,9 @@ angular.module('ttnApp')
 		};
 
 		$scope.$watch("question.selectedAnswer", function(){
-			countTotalCorrect();
+			if ($scope.questions) {
+				countTotalCorrect();
+			}
 		});
 
 		$scope.questionId = parseInt($routeParams.questionId);
