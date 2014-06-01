@@ -5,15 +5,15 @@ angular.module('ttnApp')
 
 		var getQuestions = function() {
 			var deferred = $q.defer();
-			// if ($window.sessionStorage.getItem("questionsData") !== null) {
-			// 	var sessionDeferred = $q.defer();
-			// 	sessionDeferred.resolve($window.sessionStorage.getItem("questionsData"));
-			// 	return sessionDeferred.promise;
-			// }
+			if ($window.sessionStorage.getItem("questionsData") !== null) {
+				var sessionDeferred = $q.defer();
+				var sessionData = $window.sessionStorage.getItem("questionsData");
+				sessionDeferred.resolve(JSON.parse(sessionData));
+				return sessionDeferred.promise;
+			}
 
 			$http.get("../../data/data.json").success(function(questions) {
-				$window.sessionStorage && $window.sessionStorage.setItem("questionsData", questions);
-				$scope.questions = questions;
+				$window.sessionStorage && $window.sessionStorage.setItem("questionsData", JSON.stringify(questions));
 				deferred.resolve(questions);
 			});
 
@@ -21,6 +21,7 @@ angular.module('ttnApp')
 		};
 
 		$scope.save = function() {
+			$scope.questions[$routeParams.questionId - 1] = $scope.question;
 			if ($window.sessionStorage) {
 				$window.sessionStorage.setItem("questionsData", JSON.stringify($scope.questions));
 			} else {
@@ -36,6 +37,7 @@ angular.module('ttnApp')
 		$scope.questionId = parseInt($routeParams.questionId);
 
 		getQuestions().then(function(questions) {
+			$scope.questions = questions;
 			$scope.question = $scope.questions[$routeParams.questionId - 1];
 		});
 
