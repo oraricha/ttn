@@ -3,7 +3,7 @@
 angular.module('ttnApp')
 	.controller('CmCtrl', ['$scope', '$http', function($scope, $http) {
 
-		$http.get("../../data/cm.json").success(function(data) {
+		$http.get("data/cm.json").success(function(data) {
 			// console.log(data);
 			google.setOnLoadCallback(drawVisualization(data));
 		});

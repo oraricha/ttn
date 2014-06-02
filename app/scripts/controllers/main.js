@@ -12,7 +12,8 @@ angular.module('ttnApp')
 				return sessionDeferred.promise;
 			}
 
-			$http.get("../../data/data.json").success(function(questions) {
+			// on development json path is: "../../data/data.json"
+			$http.get("data/data.json").success(function(questions) {
 				$window.sessionStorage && $window.sessionStorage.setItem("questionsData", JSON.stringify(questions));
 				deferred.resolve(questions);
 			});
@@ -35,7 +36,7 @@ angular.module('ttnApp')
 
 		$scope.isLast = function() {
 			if ($scope.questions) {
-				return $scope.questionId + 1 === $scope.questions.length;
+				return $scope.questionId === $scope.questions.length;
 			}
 			return false;
 		};
